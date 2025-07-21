@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .cuadrado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 400px;
+            height: 400px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 32px;
+        }
+        .time {
+            font-size: 28px;
+        }
+
+	.time2 {
+            font-size: 40px;
+	}
+    </style>
+</head>
+<body>
+    <div class="cuadrado">
+        <div id="contador">
+            <div id="dias" class="time2"></div>
+            <div id="horas" class="time"></div>
+            <div id="minutos" class="time"></div>
+            <div id="segundos" class="time"></div>
+        </div>
+    </div>
+
+    <script>
+        function actualizarContador() {
+            const fechaFutura = new Date('2025-09-05T00:00:00');
+            const ahora = new Date();
+            const diferencia = fechaFutura - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById('contador').innerHTML = "¡Es el 5 de septiembre!";
+                return;
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            document.getElementById('dias').textContent = `Días: ${dias}`;
+            document.getElementById('horas').textContent = `Horas: ${horas}`;
+            document.getElementById('minutos').textContent = `Minutos: ${minutos}`;
+            document.getElementById('segundos').textContent = `Segundos: ${segundos}`;
+        }
+
+        setInterval(actualizarContador, 1000);
+    </script>
+</body>
+</html>
